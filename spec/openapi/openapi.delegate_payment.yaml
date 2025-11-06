@@ -162,12 +162,12 @@ paths:
             application/json:
               schema: { $ref: "#/components/schemas/Error" }
               examples:
-                internal_server_error:
+                processing_error:
                   value:
                     error:
-                      type: internal_server_error
-                      code: internal_server_error
-                      message: "Internal server error"
+                      type: processing_error
+                      code: processing_error
+                      message: "Processing error"
         "503":
           description: Service unavailable
           content:
@@ -415,13 +415,23 @@ components:
           enum:
             [
               invalid_request,
+              unauthorized,
               rate_limit_exceeded,
               processing_error,
               service_unavailable,
             ]
         code:
           type: string
-          enum: [invalid_card, duplicate_request, idempotency_conflict]
+          enum:
+            [
+              invalid_card,
+              duplicate_request,
+              idempotency_conflict,
+              unauthorized,
+              rate_limit_exceeded,
+              processing_error,
+              service_unavailable,
+            ]
         message:
           type: string
         param:
