@@ -11,17 +11,20 @@ This guide shows how to download compiled reports and raw telemetry exports from
 ```bash
 export SEI_API_BASE="https://sei.example.com"
 export SEI_TOKEN="eyJhbGciOi...REPLACE_WITH_REAL_TOKEN"
+export SEI_NODE_ID="3426"
+export SEI_FROM="2025-11-07T10:00:00Z"
+export SEI_TO="2025-11-07T11:00:00Z"
 ```
 
 ## Download a Compiled PDF Report
 
-The following command fetches a PDF report that includes telemetry, motion events, and snapshots for node `3426` between `2025-11-07T10:00:00Z` and `2025-11-07T11:00:00Z`. Adjust the node ID, time window, and included sections as needed.
+The following command fetches a PDF report that includes telemetry, motion events, and snapshots for the configured node between the chosen timestamps. Adjust the node ID, time window, and included sections as needed.
 
 ```bash
 curl -sS \
   -H "Authorization: Bearer $SEI_TOKEN" \
-  "$SEI_API_BASE/api/v1/nodes/3426/reports?from=2025-11-07T10:00:00Z&to=2025-11-07T11:00:00Z&format=pdf&include=telemetry,snapshots,motion" \
-  -o node-3426-report.pdf
+  "$SEI_API_BASE/api/v1/nodes/$SEI_NODE_ID/reports?from=$SEI_FROM&to=$SEI_TO&format=pdf&include=telemetry,snapshots,motion" \
+  -o "node-${SEI_NODE_ID}-report.pdf"
 ```
 
 ## Export Telemetry as CSV
@@ -31,8 +34,8 @@ To retrieve raw telemetry for the same period as a CSV file, specify the desired
 ```bash
 curl -sS \
   -H "Authorization: Bearer $SEI_TOKEN" \
-  "$SEI_API_BASE/api/v1/nodes/3426/export.csv?from=2025-11-07T10:00:00Z&to=2025-11-07T11:00:00Z&fields=timestamp,lat,lon,temperature,motion" \
-  -o node-3426-telemetry.csv
+  "$SEI_API_BASE/api/v1/nodes/$SEI_NODE_ID/export.csv?from=$SEI_FROM&to=$SEI_TO&fields=timestamp,lat,lon,temperature,motion" \
+  -o "node-${SEI_NODE_ID}-telemetry.csv"
 ```
 
 ## Tips
