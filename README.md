@@ -72,11 +72,12 @@ To start building with ACP:
 
 ## 📚 Documentation
 
-| Area                  | Resource                                                                                 |
-| --------------------- | ---------------------------------------------------------------------------------------- |
-| Checkout API Spec     | [spec/openapi/openapi.agentic_checkout.yaml](spec/openapi/openapi.agentic_checkout.yaml) |
-| Delegate Payment Spec | [spec/openapi/openapi.delegate_payment.yaml](spec/openapi/openapi.delegate_payment.yaml) |
-| SEI API Exports Guide | [docs/sei_api_exports.md](docs/sei_api_exports.md)                                       |
+| Area                                  | Resource                                                                                 |
+| ------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Checkout API Spec                     | [spec/openapi/openapi.agentic_checkout.yaml](spec/openapi/openapi.agentic_checkout.yaml) |
+| Delegate Payment Spec                 | [spec/openapi/openapi.delegate_payment.yaml](spec/openapi/openapi.delegate_payment.yaml) |
+| SEI API Exports Guide                 | [docs/sei_api_exports.md](docs/sei_api_exports.md)                                       |
+| PQ Activation Lifecycle & Capabilities | [docs/quantum-activation-proposal.md](docs/quantum-activation-proposal.md)               |
 
 ---
 
