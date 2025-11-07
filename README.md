@@ -76,6 +76,7 @@ To start building with ACP:
 | --------------------- | ---------------------------------------------------------------------------------------- |
 | Checkout API Spec     | [spec/openapi/openapi.agentic_checkout.yaml](spec/openapi/openapi.agentic_checkout.yaml) |
 | Delegate Payment Spec | [spec/openapi/openapi.delegate_payment.yaml](spec/openapi/openapi.delegate_payment.yaml) |
+| SEI API Exports Guide | [docs/sei_api_exports.md](docs/sei_api_exports.md)                                       |
 
 ---
 
