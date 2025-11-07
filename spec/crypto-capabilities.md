@@ -1,6 +1,6 @@
 # Crypto Capabilities Manifest
 
-This document defines the `crypto_capabilities` payload referenced by the "Activation Beyond Quantum-Resistant Encryption" RFC. The manifest provides a structured way for ACP services to declare supported post-quantum (PQ) and hybrid cryptographic suites, fallback behavior, and activation policy metadata.
+This document defines the `crypto_capabilities` payload referenced by the "Activation Beyond Quantum-Resistant Encryption" RFC ([`rfcs/rfc.crypto_activation.md`](../rfcs/rfc.crypto_activation.md)). The manifest provides a structured way for ACP services to declare supported post-quantum (PQ) and hybrid cryptographic suites, fallback behavior, and activation policy metadata.
 
 ## Object Definition
 The manifest is represented as a JSON object with the following top-level fields:
