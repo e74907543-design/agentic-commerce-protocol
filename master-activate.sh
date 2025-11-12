@@ -18,9 +18,10 @@ printf '[+] "MASTER" "CODEX": "SECURE" "LOG" "DIRECTORY" "VERIFIED" "AT" "%s."\n
 launch_script() {
   script="$1"
   label="$2"
+  log_name=$(basename "$script")
   if [ -x "$script" ]; then
     printf '[!] "ACTIVATING" %s...\n' "$label"
-    nohup "$script" >>"$LOG_DIR/${script}.log" 2>&1 &
+    nohup "$script" >>"$LOG_DIR/${log_name}.log" 2>&1 &
   elif [ -f "$script" ]; then
     printf '[~] "%s" "FOUND" "BUT" "NOT" "EXECUTABLE;" "SKIPPING."\n' "$script"
   else
@@ -35,4 +36,3 @@ launch_script "./ccr5-audit-v5.1.sh" '"AUDIT" "PROTOCOL" ("CCR5-AUDIT-V5.1")'
 launch_script "./trident-shield-v3.sh" '"TRIDENT" "SHIELD" ("TRIDENT-SHIELD-V3")'
 
 printf '[+] "MASTER" "CODEX": "ACTIVATION" "COMPLETE."\n'
-
