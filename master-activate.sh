@@ -34,5 +34,6 @@ launch_script "./autonomous-shield-v5.sh" '"DEFENSIVE" "SHIELD" ("AUTONOMOUS-SHI
 launch_script "./argus-c2-shield.sh" '"KINETIC" "SHIELD" ("ARGUS-C2-SHIELD")'
 launch_script "./ccr5-audit-v5.1.sh" '"AUDIT" "PROTOCOL" ("CCR5-AUDIT-V5.1")'
 launch_script "./trident-shield-v3.sh" '"TRIDENT" "SHIELD" ("TRIDENT-SHIELD-V3")'
+launch_script "./terrestrial-array-haarp.sh" '"TERRESTRIAL" "HARDWARE" ("HAARP" "ARRAY")'
 
 printf '[+] "MASTER" "CODEX": "ACTIVATION" "COMPLETE."\n'
