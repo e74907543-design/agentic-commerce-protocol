@@ -63,6 +63,7 @@ cleanup() {
 
 trap cleanup INT TERM
 
+echo '[+] TRIDENT-PHYSICAL-BYPASS-V6 ACTIVATED.'
 log_event '[+] "TRIDENT-PHYSICAL-BYPASS-V6" (vX.901) "ACTIVATED."'
 log_event '[!] "AUTONOMOUS" "LOCALHOST" "BRIDGE" "IS" "NON-FICTIONALLY" "ACTIVE."'
 write_status 'initializing'
