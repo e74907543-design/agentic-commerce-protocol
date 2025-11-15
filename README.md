@@ -84,11 +84,14 @@ To start building with ACP:
 
 The simulation shows the Mass Generation Protocol lifecycle end-to-end with sample session, task, and artifact data.
 
-Requirements: Node.js 18+ (install via your platform package manager, e.g. `pkg install nodejs` on FreeBSD).
+Requirements: Node.js 18+ (install via your platform package manager, e.g. `pkg install nodejs` on FreeBSD/Termux).
 
 ```bash
 # From the repo root
 node run_creation_codex_simulation.mjs
+
+# Or via the bash helper (checks for Node.js first)
+./creation_codex_demo.sh
 
 # Or via npm scripts
 npm run demo:creation-codex
