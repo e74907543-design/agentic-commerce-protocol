@@ -70,7 +70,12 @@
   },
   "delegate_payment_error_rate_limit": {
     "type": "rate_limit_exceeded",
-    "code": "too_many_requests",
-    "message": "Too many requests, please retry later"
+    "code": "rate_limit_exceeded",
+    "message": "Rate limit exceeded"
+  },
+  "delegate_payment_error_unauthorized": {
+    "type": "unauthorized",
+    "code": "unauthorized",
+    "message": "Unauthorized"
   }
 }

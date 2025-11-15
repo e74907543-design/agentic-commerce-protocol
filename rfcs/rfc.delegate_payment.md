@@ -177,8 +177,8 @@ Exactly **one** credential type is supported today: **card**.
 
 **Type & Code Guidelines**
 
-- `type` ∈ `invalid_request`, `rate_limit_exceeded`, `processing_error`, `service_unavailable`
-- `code` ∈ `invalid_card`, `duplicate_request`, `idempotency_conflict`
+- `type` ∈ `invalid_request`, `unauthorized`, `rate_limit_exceeded`, `processing_error`, `service_unavailable`
+- `code` ∈ `invalid_card`, `duplicate_request`, `idempotency_conflict`, `unauthorized`, `rate_limit_exceeded`, `processing_error`, `service_unavailable`
 - `param` **SHOULD** be an RFC 9535 JSONPath (when applicable).
 
 ---

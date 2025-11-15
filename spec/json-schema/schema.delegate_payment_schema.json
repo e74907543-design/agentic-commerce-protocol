@@ -238,6 +238,7 @@
           "type": "string",
           "enum": [
             "invalid_request",
+            "unauthorized",
             "rate_limit_exceeded",
             "processing_error",
             "service_unavailable"
@@ -245,7 +246,15 @@
         },
         "code": {
           "type": "string",
-          "enum": ["invalid_card", "duplicate_request", "idempotency_conflict"]
+          "enum": [
+            "invalid_card",
+            "duplicate_request",
+            "idempotency_conflict",
+            "unauthorized",
+            "rate_limit_exceeded",
+            "processing_error",
+            "service_unavailable"
+          ]
         },
         "message": {
           "type": "string"
