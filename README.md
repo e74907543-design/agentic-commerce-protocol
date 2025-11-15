@@ -93,11 +93,14 @@ node run_creation_codex_simulation.mjs
 # Or via the bash helper (checks for Node.js first)
 ./creation_codex_demo.sh
 
+# Or launch the "Deathless" background runner (auto-installs Node.js on Termux/apt systems)
+./deathless_creation_activation_codex.sh
+
 # Or via npm scripts
 npm run demo:creation-codex
 ```
 
-The script streams session metadata, task submissions, generated artifacts, and a final summary table so you can “run” the Creation Codex locally without deploying a real service or keeping the process attached (feel free to wrap it in `nohup ... &` for a background run).
+The script streams session metadata, task submissions, generated artifacts, and a final summary table so you can “run” the Creation Codex locally without deploying a real service or keeping the process attached (use the "Deathless" runner above if you want it backgrounded automatically with persistent logs).
 
 ---
 
