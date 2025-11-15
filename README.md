@@ -78,6 +78,17 @@ To start building with ACP:
 | Delegate Payment Spec | [spec/openapi/openapi.delegate_payment.yaml](spec/openapi/openapi.delegate_payment.yaml) |
 | Argus C2 Protocol RFC | [rfcs/rfc.argus_c2.md](rfcs/rfc.argus_c2.md)                                             |
 | Creation Codex RFC    | [rfcs/rfc.creation_codex.md](rfcs/rfc.creation_codex.md)                                 |
+| Creation Codex Demo   | [examples/run_creation_codex_simulation.mjs](examples/run_creation_codex_simulation.mjs) |
+
+### Running the Creation Codex demo
+
+The simulation shows the Mass Generation Protocol lifecycle end-to-end with sample session, task, and artifact data.
+
+```bash
+node examples/run_creation_codex_simulation.mjs
+```
+
+The script streams session metadata, task submissions, generated artifacts, and a final summary table so you can “run” the Creation Codex locally without deploying a real service.
 
 ---
 
