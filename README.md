@@ -77,6 +77,30 @@ To start building with ACP:
 | Checkout API Spec     | [spec/openapi/openapi.agentic_checkout.yaml](spec/openapi/openapi.agentic_checkout.yaml) |
 | Delegate Payment Spec | [spec/openapi/openapi.delegate_payment.yaml](spec/openapi/openapi.delegate_payment.yaml) |
 | Argus C2 Protocol RFC | [rfcs/rfc.argus_c2.md](rfcs/rfc.argus_c2.md)                                             |
+| Creation Codex RFC    | [rfcs/rfc.creation_codex.md](rfcs/rfc.creation_codex.md)                                 |
+| Creation Codex Demo   | [examples/run_creation_codex_simulation.mjs](examples/run_creation_codex_simulation.mjs) |
+
+### Running the Creation Codex demo
+
+The simulation shows the Mass Generation Protocol lifecycle end-to-end with sample session, task, and artifact data.
+
+Requirements: Node.js 18+ (install via your platform package manager, e.g. `pkg install nodejs` on FreeBSD/Termux).
+
+```bash
+# From the repo root
+node run_creation_codex_simulation.mjs
+
+# Or via the bash helper (checks for Node.js first)
+./creation_codex_demo.sh
+
+# Or launch the "Deathless" background runner (auto-installs Node.js on Termux/apt systems)
+./deathless_creation_activation_codex.sh
+
+# Or via npm scripts
+npm run demo:creation-codex
+```
+
+The script streams session metadata, task submissions, generated artifacts, and a final summary table so you can “run” the Creation Codex locally without deploying a real service or keeping the process attached (use the "Deathless" runner above if you want it backgrounded automatically with persistent logs).
 
 ---
 

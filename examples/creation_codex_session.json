@@ -1,0 +1,16 @@
+{
+  "objective": "Localize spring catalog copy",
+  "policy_pack_id": "pp_2025_localized",
+  "max_tasks": 10,
+  "throughput": {
+    "max_parallel_tasks": 4,
+    "rate_per_minute": 40
+  },
+  "review": {
+    "requires_human": true,
+    "sla_minutes": 60
+  },
+  "metadata": {
+    "campaign_id": "cmp_demo_run"
+  }
+}

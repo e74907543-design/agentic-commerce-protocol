@@ -1,0 +1,28 @@
+[
+  {
+    "task_id": "sku_100_en",
+    "prompt_template": "Write a playful description for {{sku_name}} in {{locale}}",
+    "variables": {
+      "sku_name": "Cloudweave Hoodie",
+      "locale": "en-GB"
+    },
+    "channels": ["product_page", "email"],
+    "guardrails": {
+      "max_tokens": 180,
+      "temperature": 0.6
+    }
+  },
+  {
+    "task_id": "sku_100_es",
+    "prompt_template": "Write a playful description for {{sku_name}} in {{locale}}",
+    "variables": {
+      "sku_name": "Cloudweave Hoodie",
+      "locale": "es-ES"
+    },
+    "channels": ["product_page"],
+    "guardrails": {
+      "max_tokens": 180,
+      "temperature": 0.6
+    }
+  }
+]
