@@ -2,7 +2,8 @@
   "name": "@agentic-commerce-protocol/specification",
   "version": "0.1.0",
   "scripts": {
-    "compile:schema": "ajv compile --spec=draft2020 -c ajv-formats -s spec/json-schema/**/*.json"
+    "compile:schema": "ajv compile --spec=draft2020 -c ajv-formats -s spec/json-schema/**/*.json",
+    "demo:creation-codex": "node run_creation_codex_simulation.mjs"
   },
   "devDependencies": {
     "ajv": "^8.17.1",

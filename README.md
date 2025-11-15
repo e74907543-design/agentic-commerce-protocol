@@ -84,11 +84,17 @@ To start building with ACP:
 
 The simulation shows the Mass Generation Protocol lifecycle end-to-end with sample session, task, and artifact data.
 
+Requirements: Node.js 18+ (install via your platform package manager, e.g. `pkg install nodejs` on FreeBSD).
+
 ```bash
-node examples/run_creation_codex_simulation.mjs
+# From the repo root
+node run_creation_codex_simulation.mjs
+
+# Or via npm scripts
+npm run demo:creation-codex
 ```
 
-The script streams session metadata, task submissions, generated artifacts, and a final summary table so you can “run” the Creation Codex locally without deploying a real service.
+The script streams session metadata, task submissions, generated artifacts, and a final summary table so you can “run” the Creation Codex locally without deploying a real service or keeping the process attached (feel free to wrap it in `nohup ... &` for a background run).
 
 ---
 
