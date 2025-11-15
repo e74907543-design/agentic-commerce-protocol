@@ -1,0 +1,42 @@
+# SQL Injection Mitigation Reference
+
+> Field guide for safely composing database interactions inside Agentic Commerce Protocol implementations.
+
+---
+
+## Why Parameterized Queries Matter
+- **Separation of command and data** prevents arbitrary SQL from executing alongside trusted statements.
+- **Consistent escaping** is delegated to the driver, avoiding brittle, hand-written sanitization logic.
+- **Least astonishment for maintainers** because every variable boundary is explicit in the query shape.
+
+---
+
+## Example: Fetching a User Record Safely
+```python
+cursor.execute(
+    "SELECT * FROM users WHERE user_id = %s",
+    (user_input,),
+)
+```
+
+### Callout
+- The SQL string contains a positional placeholder (`%s`) recognized by the database adapter.
+- User-controlled input is provided as a tuple in the second argument, so the adapter can escape the value.
+- The hostile payload is never merged into the command text, neutralizing SQL injection attempts.
+
+---
+
+## Operational Checklist
+| Step | Verification |
+| ---- | ------------ |
+| Audit query definitions | Every variable is supplied through adapter parameters, never string concatenation. |
+| Enforce strict types | Validate user inputs before reaching the database boundary. |
+| Log rejected payloads | Capture sanitized diagnostics without echoing raw SQL back to clients. |
+| Add regression tests | Simulate malicious inputs to confirm the adapter treats them as plain data. |
+
+---
+
+## Further Reading
+- PostgreSQL docs: *Query parameters and prepared statements*.
+- OWASP: *SQL Injection Prevention Cheat Sheet*.
+- Driver manuals for your language/runtime combination.
