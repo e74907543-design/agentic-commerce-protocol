@@ -1,0 +1,33 @@
+# ACP Crypto Capability Negotiation Matrix
+
+This matrix enumerates interoperability scenarios for the post-quantum (PQ) and hybrid activation workflow. Harness implementers SHOULD convert each scenario into automated contract tests that exercise negotiation, activation, telemetry, and rollback paths.
+
+## Legend
+- `C` — Classical-only suite
+- `H` — Hybrid suite (classical + PQ)
+- `P` — PQ-only suite
+- `A` — Attestation required
+- `T` — Telemetry event expected
+
+## Scenario Table
+| Scenario | Local Suites | Remote Suites | Expected Outcome | Notes |
+| --- | --- | --- | --- | --- |
+| 1 | H (`pq-hybrid-mlkem768-ed25519`), C (`classical-tls13`) | H (`pq-hybrid-mlkem768-ed25519`) | Activate hybrid suite | Validate telemetry: `crypto.activation.state` (T) |
+| 2 | H (`pq-hybrid-mlkem768-ed25519`), C | C (`classical-tls13`) | Downgrade to classical | Emit rollback telemetry `crypto.rollback.executed` (T) |
+| 3 | P (`pq-only-mlkem1024-sphincsplus`), H | H (`pq-hybrid-mlkem768-ed25519`) | Negotiate hybrid (no PQ-only overlap) | Ensure downgrade reason logged as `peer-incompatible` |
+| 4 | P (`pq-only-mlkem1024-sphincsplus` A) | P (`pq-only-mlkem1024-sphincsplus` A) | Activate PQ-only | Require attestation proof before activation (A) |
+| 5 | H (`pq-hybrid-mlkem768-ed25519` A) | H (`pq-hybrid-mlkem768-ed25519`), P | Activate hybrid | Attestation optional locally; confirm remote attestation respected |
+| 6 | H (`pq-hybrid-mlkem768-ed25519`) | H (`pq-hybrid-mlkem768-ed25519`), experimental hybrid v2 | Activate common hybrid suite | Capture negotiation hash comparison |
+| 7 | H (`pq-hybrid-mlkem768-ed25519`), P | Experimental PQ (`pq-only-kyber1024-falcon`) | Negotiation fails | Expect `peer-incompatible` result, fallback blocked |
+| 8 | C | H (`pq-hybrid-mlkem768-ed25519`) | Classical-only activation | Ensure telemetry gap detection alerts operations |
+| 9 | H (shadow mode) | H (`pq-hybrid-mlkem768-ed25519`) | Shadow activation only | Verify activation mode = `shadow`, no traffic migration |
+| 10 | H (`pq-hybrid-mlkem768-ed25519`) w/ stale manifest | H (`pq-hybrid-mlkem768-ed25519`) | Reject activation | Manifest TTL exceeded; expect audit log entry |
+
+## Harness Expectations
+1. **Manifest Validation** — Load manifests from fixtures, validate against `spec/crypto-capabilities.md`, and compute canonical hashes.
+2. **Negotiation Engine** — Simulate handshake exchanging manifest hashes, selecting highest-preference overlapping suite.
+3. **Activation Hooks** — Assert that telemetry signals fire with required fields for success, downgrade, and rollback paths.
+4. **Attestation Checks** — Inject attestation success/failure responses to ensure activation halts without valid evidence when `attestation.required = true`.
+5. **Reporting** — Emit per-scenario reports capturing negotiated suite, fallback path, telemetry payloads, and attestation status for operator review.
+
+Harness authors SHOULD expose a CLI flag to target specific scenarios (e.g., `--scenario 4`) and produce machine-readable output suitable for CI ingestion (JSON or JUnit XML).
