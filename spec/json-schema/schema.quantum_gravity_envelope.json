@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/agentic-commerce/quantum-gravity-envelope.schema.json",
+  "title": "Quantum Gravity Encryption (QGE) Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "qge_version": {
+      "type": "string",
+      "description": "Semantic version for the QGE envelope format (YYYY-MM-DD).",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "envelope_id": {
+      "type": "string",
+      "description": "Unique identifier (UUID, ULID, etc.) for correlating the envelope to transport logs.",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "capabilities": {
+      "type": "array",
+      "description": "Negotiated crypto suites and telemetry probes in order of preference.",
+      "items": {
+        "type": "string",
+        "pattern": "^(mlkem(512|768|1024)|aes(128|256)gcm|chacha20poly1305|gravity_(none|v1|v2))$"
+      },
+      "minItems": 1,
+      "maxItems": 6,
+      "uniqueItems": true
+    },
+    "sender": {
+      "$ref": "#/$defs/Participant"
+    },
+    "receiver": {
+      "$ref": "#/$defs/Participant"
+    },
+    "telemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional gravity probe metrics for downgrade detection.",
+      "properties": {
+        "latency_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "jitter_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "drift_ppm": {
+          "type": "number",
+          "minimum": -100000,
+          "maximum": 100000
+        },
+        "gravity_signature": {
+          "type": "string",
+          "description": "Base64-encoded HMAC covering telemetry samples.",
+          "pattern": "^(base64:)?[A-Za-z0-9+/=]+$"
+        }
+      },
+      "required": [
+        "latency_ms",
+        "jitter_ms",
+        "drift_ppm",
+        "gravity_signature"
+      ]
+    },
+    "aad": {
+      "description": "Optional base64-encoded associated data passed to the AEAD cipher.",
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^(base64:)?[A-Za-z0-9+/=]+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ciphertext": {
+      "type": "string",
+      "description": "Base64-encoded AEAD ciphertext containing the wrapped ACP payload.",
+      "pattern": "^(base64:)?[A-Za-z0-9+/=]+$"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Detached signature over the canonicalized envelope (Ed25519, P-256, etc.).",
+      "pattern": "^(base64:)?[A-Za-z0-9+/=]+$"
+    },
+    "aad_context": {
+      "type": "string",
+      "description": "Human-readable hint describing the structure encoded inside AAD (e.g., headers checksum).",
+      "maxLength": 128
+    }
+  },
+  "required": [
+    "qge_version",
+    "envelope_id",
+    "capabilities",
+    "sender",
+    "receiver",
+    "ciphertext",
+    "signature"
+  ],
+  "$defs": {
+    "Participant": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "entity_id": {
+          "type": "string",
+          "description": "Stable identifier for the agent, merchant hub, or PSP participant.",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "key_id": {
+          "type": "string",
+          "description": "Decentralized identifier for locating the participant's public key.",
+          "pattern": "^did:key:[A-Za-z0-9]+"
+        }
+      },
+      "required": [
+        "entity_id",
+        "key_id"
+      ]
+    }
+  }
+}
