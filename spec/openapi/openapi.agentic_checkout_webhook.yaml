@@ -62,7 +62,7 @@ paths:
                     status: shipped
                     refunds:
                       - type: original_payment
-                        amount: "1.00"
+                        amount: 100
       responses:
         "200":
           description: Event accepted
@@ -102,7 +102,9 @@ components:
       additionalProperties: false
       properties:
         type: { type: string, enum: [store_credit, original_payment] }
-        amount: { type: integer }
+        amount:
+          type: integer
+          description: Amount expressed in the smallest currency unit (for USD, cents)
       required: [type, amount]
 
     EventDataOrder:
