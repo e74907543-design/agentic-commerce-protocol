@@ -70,6 +70,23 @@ To start building with ACP:
 
 ---
 
+## ✅ Local validation
+
+You can validate the JSON Schemas shipped with this repo using the bundled `ajv` tooling:
+
+1. Install dependencies (PNPM is the preferred package manager):
+   ```bash
+   pnpm install
+   ```
+2. Compile and verify all JSON Schemas (ensures they parse correctly and formats are registered):
+   ```bash
+   pnpm run compile:schema
+   ```
+
+The `compile:schema` script runs Ajv in `draft2020` mode with `ajv-formats` enabled against every schema under `spec/json-schema/`.
+
+---
+
 ## 📚 Documentation
 
 | Area                  | Resource                                                                                 |
